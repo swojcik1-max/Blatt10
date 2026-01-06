@@ -75,9 +75,7 @@ public class Cell {
     }
     private void decideNextStatus(){
         if(this.alive){
-            if (this.numLivingNeighbors == 2 || this.numLivingNeighbors == 3) {
-                this.isAliveNextGen = true;
-            }
+                this.isAliveNextGen = (this.numLivingNeighbors == 2 || this.numLivingNeighbors == 3);
         } else {
             this.isAliveNextGen = (this.numLivingNeighbors == 3);
         }
