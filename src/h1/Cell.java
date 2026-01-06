@@ -56,33 +56,33 @@ public class Cell {
         int colT ;
         for(int row = -1 ; row < 1 ; row++){
             for(int col = -1 ; col < 1 ; col++){
-                if(row == 0 || col == 0){
+                if(row == 0 && col == 0){
                     continue;
                 }
                 rowT = indexRow + row;
                 colT = indexCol + col;
                 if(rowT >= 0 && rowT < gridArray.length){
                     if(colT >= 0 && colT < gridArray[0].length){
-                        if(gridArray[rowT][colT].alive){
+                        if(gridArray[rowT][colT].getAlive()){
                             counter++;
                         }
                     }
                 }
             }
         }
-        numLivingNeighbors = counter;
+        this.numLivingNeighbors = counter;
         decideNextStatus();
     }
     private void decideNextStatus(){
-        if(alive){
-            if (numLivingNeighbors == 2 || numLivingNeighbors == 3) {
-                isAliveNextGen = true;
+        if(this.alive){
+            if (this.numLivingNeighbors == 2 || this.numLivingNeighbors == 3) {
+                this.isAliveNextGen = true;
             }
         } else {
-            if(numLivingNeighbors == 3){
-                isAliveNextGen = true;
+            if(this.numLivingNeighbors == 3){
+                this.isAliveNextGen = true;
             }else {
-                isAliveNextGen = false;
+                this.isAliveNextGen = false;
             }
         }
 
