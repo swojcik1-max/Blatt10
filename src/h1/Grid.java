@@ -37,9 +37,18 @@ public class Grid {
     }
 
     public void computeNextGen(){
-        for(int a = 0 ; a < gridArray[0].length ; a++) {
-            for (int i = 0; i < gridArray.length; i++) {
-                gridArray[a][i].countLivingNeighbors(gridArray);
+        for(int r = 0 ; r < gridArray.length ; r++) {
+            for (int c = 0; c < gridArray[0].length; c++) {
+                gridArray[r][c].countLivingNeighbors(gridArray);
+            }
+        }
+        //rows are .length
+        //columns are [0].length
+        for(int r = 0 ; r < gridArray.length ; r++) {
+            for (int c = 0; c < gridArray[0].length; c++) {
+                if(gridArray[r][c].getIsAliveNextGen()){
+                    gridArray[r][c].setAlive(true);
+                }
             }
         }
     }
@@ -49,15 +58,6 @@ public class Grid {
         }
         for(int i = 0 ; i<n ; i++){
             computeNextGen();
-            //rows are .length
-            //columns are [0].length
-            for(int r = 0 ; r < gridArray.length ; r++) {
-                for (int c = 0; c < gridArray[0].length; c++) {
-                    if(gridArray[r][c].getIsAliveNextGen()){
-                        gridArray[r][c].setAlive(true);
-                    }
-                }
-            }
         }
     }
 }
