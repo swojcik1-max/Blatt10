@@ -28,7 +28,7 @@ public class Cell {
         return indexCol;
     }
     public void setIndexCol(int input){
-        indexRow = input;
+        indexCol = input;
     }
     public boolean getAlive(){
         return alive;
@@ -54,8 +54,8 @@ public class Cell {
         int counter = 0;
         int rowT ;
         int colT ;
-        for(int row = -1 ; row < 1 ; row++){
-            for(int col = -1 ; col < 1 ; col++){
+        for(int row = -1 ; row <= 1 ; row++){
+            for(int col = -1 ; col <= 1 ; col++){
                 if(row == 0 && col == 0){
                     continue;
                 }
@@ -79,11 +79,7 @@ public class Cell {
                 this.isAliveNextGen = true;
             }
         } else {
-            if(this.numLivingNeighbors == 3){
-                this.isAliveNextGen = true;
-            }else {
-                this.isAliveNextGen = false;
-            }
+            this.isAliveNextGen = (this.numLivingNeighbors == 3);
         }
 
     }

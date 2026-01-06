@@ -22,16 +22,24 @@ public class Grid {
             }
         }
         //setting the cells that are in the 1d array cells to alive in the 2d gridArray
-        for(Cell a : cells) {
-            if(a == null){
-                continue;
-            }
-            for (int r = 0; r < gridRows; r++) {
-                for (int c = 0; c < gridCols; c++) {
-                    if (gridArray[r][c].getIndexRow() == a.getIndexRow() && gridArray[r][c].getIndexCol() == a.getIndexCol()) {
-                        gridArray[r][c].setAlive(true);
+        if(cells != null){
+            for(Cell a : cells) {
+                if(a == null){
+                    continue;
+                }
+                for (int r = 0; r < gridRows; r++) {
+                    for (int c = 0; c < gridCols; c++) {
+                        if (gridArray[r][c].getIndexRow() == a.getIndexRow() && gridArray[r][c].getIndexCol() == a.getIndexCol()) {
+                            gridArray[r][c].setAlive(true);
+                        }
                     }
                 }
+            }
+        }
+        //have to update the 2d array of Cells given that we just added new Cells to the 2d array
+        for (int r = 0; r < gridRows; r++) {
+            for (int c = 0; c < gridCols; c++) {
+                gridArray[r][c].countLivingNeighbors(gridArray);
             }
         }
     }
@@ -46,13 +54,11 @@ public class Grid {
         //columns are [0].length
         for(int r = 0 ; r < gridArray.length ; r++) {
             for (int c = 0; c < gridArray[0].length; c++) {
-                if(gridArray[r][c].getIsAliveNextGen()){
-                    gridArray[r][c].setAlive(true);
-                }
+                gridArray[r][c].setAlive(gridArray[r][c].getIsAliveNextGen());
             }
         }
     }
-    public void computerGeneration(int n){
+    public void computeGeneration(int n){
         if(n <= 0){
             return;
         }
