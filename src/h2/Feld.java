@@ -9,6 +9,7 @@ public class Feld {
         this.direction = direction;
     }
     public boolean getBoese(){
+
         return boese;
     }
     public void setBoese(boolean boese){
