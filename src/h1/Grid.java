@@ -31,7 +31,7 @@ public class Grid {
                     for (int c = 0; c < gridCols; c++) {
                         if (r == a.getIndexRow() && c == a.getIndexCol()) {
                             //System.out.println("Yessirski");
-                            gridArray[r][c].setAlive(a.getAlive());
+                            gridArray[r][c].setAlive(true);
                         }
                     }
                 }
