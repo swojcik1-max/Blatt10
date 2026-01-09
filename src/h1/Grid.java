@@ -29,8 +29,9 @@ public class Grid {
                 }
                 for (int r = 0; r < gridRows; r++) {
                     for (int c = 0; c < gridCols; c++) {
-                        if (gridArray[r][c].getIndexRow() == a.getIndexRow() && gridArray[r][c].getIndexCol() == a.getIndexCol()) {
-                            gridArray[r][c].setAlive(true);
+                        if (r == a.getIndexRow() && c == a.getIndexCol()) {
+                            //System.out.println("Yessirski");
+                            gridArray[r][c].setAlive(a.getAlive());
                         }
                     }
                 }
@@ -45,8 +46,10 @@ public class Grid {
     }
 
     public void computeNextGen(){
+
         for(int r = 0 ; r < gridArray.length ; r++) {
             for (int c = 0; c < gridArray[0].length; c++) {
+
                 gridArray[r][c].countLivingNeighbors(gridArray);
             }
         }
@@ -66,4 +69,22 @@ public class Grid {
             computeNextGen();
         }
     }
+    /*public String toStringAliveTest(){
+        String end = "";
+        for (int r = 0; r < getGridArray().length; r++) {
+            boolean track = false;
+            for (int c = 0; c < getGridArray()[0].length; c++) {
+                System.out.print( "  " + getGridArray()[r][c].getAlive());
+                if(c == getGridArray()[0].length-1){
+                    track = true;
+                }
+                if(track){
+                    System.out.println();
+                }
+            }
+        }
+        return end;
+    }
+
+     */
 }
